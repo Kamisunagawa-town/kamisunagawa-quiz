@@ -184,6 +184,19 @@
         .description-feedback p:last-child {
             margin-bottom: 0;
         }
+        .progress-bar {
+            width: 100%;
+            height: 6px;
+            background-color: #e2e8f0;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4299e1, #3182ce);
+            transition: width 0.3s ease;
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -234,7 +247,7 @@
                 <!-- Text on the left -->
                 <div class="md:w-2/3 md:pr-6">
                     <p class="mb-2">この度は、「上砂川町クイズ」にご挑戦いただきありがとうございます。このクイズは、北海道空知総合振興局管内にある町、上砂川町の歴史や文化、そして魅力に触れるためのものです。</p>
-                    <p class="mb-2">かつて炭鉱で栄え、多くの人々の生活を支えたこの町のことを、あなたはどれくらい知っていますか？ 全問正解を目指すもよし、新たな発見を楽しむもよし。さあ、上砂川町の奥深い世界へ旅立ちましょう！</p>
+                    <p class="mb-2">かつて炭鉱で栄え、多くの人々の生活を支えたこの町のことを、あなたはどれくらい知っていますか？ 全11問（選択式10問、記述式1問）で、上砂川町の奥深い世界へ旅立ちましょう！</p>
                 </div>
                 <!-- Image on the right -->
                 <div class="intro-image-container md:w-1/3 mt-4 md:mt-0 md:pl-4 flex justify-center md:justify-end">
@@ -247,73 +260,179 @@
         </div>
 
         <form id="quizForm" style="display:none;">
+            <div class="progress-bar">
+                <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            <div id="question-counter" class="text-center text-gray-600 mb-4 font-semibold"></div>
+
+            <!-- 歴史・開拓関連 -->
             <div id="question-1" class="question-section" style="display:none;">
-                <p class="question-title">【第一問】 (選択式)<br>上砂川町がかつて主要な産業として栄えたものは何ですか？</p>
+                <p class="question-title">【第一問】 (選択式)<br>明治32年、上砂川町に最初に入植したとされる開拓団の中心人物・山内甚之助氏は、どこの都道府県の出身でしょう？</p>
                 <label class="option-label">
-                    <input type="radio" name="q1" value="ア"> ア) 農業
+                    <input type="radio" name="q1" value="ア"> ア) 新潟県
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q1" value="イ"> イ) 漁業
+                    <input type="radio" name="q1" value="イ"> イ) 福井県
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q1" value="ウ"> ウ) 炭鉱業
+                    <input type="radio" name="q1" value="ウ"> ウ) 広島県
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q1" value="エ"> エ) 林業
+                    <input type="radio" name="q1" value="エ"> エ) 岐阜県
                 </label>
             </div>
 
             <div id="question-2" class="question-section" style="display:none;">
-                <p class="question-title">【第二問】 (選択式)<br>上砂川町にあった旧国鉄函館本線上砂川支線の終着駅は、倉本聰脚本のドラマ『昨日、悲別で』の舞台となり、通称「悲別駅」として知られています。その駅の正式名称は何だったでしょう？</p>
+                <p class="question-title">【第二問】 (選択式)<br>上砂川町は1949年にどの町から分離して誕生しましたか？</p>
                 <label class="option-label">
-                    <input type="radio" name="q2" value="ア"> ア) 東上砂川駅
+                    <input type="radio" name="q2" value="ア"> ア) 砂川町と歌志内町
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q2" value="イ"> イ) 上砂川駅
+                    <input type="radio" name="q2" value="イ"> イ) 砂川町と歌志内町の一部
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q2" value="ウ"> ウ) 鶉駅（うずらえき）
+                    <input type="radio" name="q2" value="ウ"> ウ) 旭川市と砂川町
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q2" value="エ"> エ) 下鶉駅
+                    <input type="radio" name="q2" value="エ"> エ) 滝川市と歌志内町
                 </label>
             </div>
 
             <div id="question-3" class="question-section" style="display:none;">
-                <p class="question-title">【第三問】 (選択式)<br>上砂川町にかつて存在し、地下の立坑を利用して微小重力（無重力に近い状態）を作り出し、科学実験などが行われていたユニークな施設は何ですか。</p>
+                <p class="question-title">【第三問】 (選択式)<br>上砂川町がかつて主要な産業として栄えたものは何ですか？</p>
                 <label class="option-label">
-                    <input type="radio" name="q3" value="ア"> ア) 上砂川町無重力科学館
+                    <input type="radio" name="q3" value="ア"> ア) 農業
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q3" value="イ"> イ) 北海道立地底博物館
+                    <input type="radio" name="q3" value="イ"> イ) 漁業
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q3" value="ウ"> ウ) 地下無重力実験センター (JAMIC)
+                    <input type="radio" name="q3" value="ウ"> ウ) 炭鉱業
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q3" value="エ"> エ) 空知サイエンスドーム
+                    <input type="radio" name="q3" value="エ"> エ) 林業
                 </label>
             </div>
 
+            <!-- 町の象徴・現在 -->
             <div id="question-4" class="question-section" style="display:none;">
-                <p class="question-title">【第四問】 (選択式)<br>2014年まで、上砂川町はある分野で「日本一」として知られていました。それは次のうちどれでしょう？</p>
+                <p class="question-title">【第四問】 (選択式)<br>上砂川町の町章に使われているモチーフはどれですか？</p>
                 <label class="option-label">
-                    <input type="radio" name="q4" value="ア"> ア) 日本一長い商店街がある町
+                    <input type="radio" name="q4" value="ア"> ア) 星
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q4" value="イ"> イ) 日本一標高の高い場所にある町役場
+                    <input type="radio" name="q4" value="イ"> イ) ダイヤ
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q4" value="ウ"> ウ) 日本一人口の少ない町
+                    <input type="radio" name="q4" value="ウ"> ウ) 山
                 </label>
                 <label class="option-label">
-                    <input type="radio" name="q4" value="エ"> エ) 日本一多くの種類の野鳥が観察できる町
+                    <input type="radio" name="q4" value="エ"> エ) 雪の結晶
                 </label>
             </div>
 
+            <!-- 文化・ドラマ関連 -->
             <div id="question-5" class="question-section" style="display:none;">
-                <p class="question-title">【第五問】 (記述式)<br>あなたが知っている上砂川町の魅力や、町に対するイメージ、思い出、またはこのクイズを通して上砂川町に興味を持ったことなど、自由に記述してください。</p>
-                <textarea id="q5_text" name="q5_text" placeholder="ここに回答を入力してください..."></textarea>
+                <p class="question-title">【第五問】 (選択式)<br>上砂川町にあった旧国鉄函館本線上砂川支線の終着駅は、倉本聰脚本のドラマ『昨日、悲別で』の舞台となり、通称「悲別駅」として知られています。その駅の正式名称は何だったでしょう？</p>
+                <label class="option-label">
+                    <input type="radio" name="q5" value="ア"> ア) 東上砂川駅
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q5" value="イ"> イ) 上砂川駅
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q5" value="ウ"> ウ) 鶉駅（うずらえき）
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q5" value="エ"> エ) 下鶉駅
+                </label>
+            </div>
+
+            <!-- 科学・宇宙関連 -->
+            <div id="question-6" class="question-section" style="display:none;">
+                <p class="question-title">【第六問】 (選択式)<br>上砂川町にかつて存在し、地下の立坑を利用して微小重力（無重力に近い状態）を作り出し、科学実験などが行われていたユニークな施設は何ですか。</p>
+                <label class="option-label">
+                    <input type="radio" name="q6" value="ア"> ア) 上砂川町無重力科学館
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6" value="イ"> イ) 北海道立地底博物館
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6" value="ウ"> ウ) 地下無重力実験センター (JAMIC)
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q6" value="エ"> エ) 空知サイエンスドーム
+                </label>
+            </div>
+
+            <div id="question-7" class="question-section" style="display:none;">
+                <p class="question-title">【第七問】 (選択式)<br>かつて上砂川町にあった「地下無重力実験センター」は、微小重力環境を活かして宇宙開発に貢献しました。小惑星探査機「はやぶさ」のターゲットマーカー試験にも使われたこの施設。その功績を称え、2009年に「Kamisunagawa」の名がクレーターに採用された天体は次のうちどれでしょう？</p>
+                <label class="option-label">
+                    <input type="radio" name="q7" value="ア"> ア) 火星
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q7" value="イ"> イ) 金星
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q7" value="ウ"> ウ) 小惑星イトカワ
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q7" value="エ"> エ) 冥王星
+                </label>
+            </div>
+
+            <!-- 観光・グルメ・イベント関連 -->
+            <div id="question-8" class="question-section" style="display:none;">
+                <p class="question-title">【第八問】 (選択式)<br>上砂川岳温泉「パンケの湯」の近くにあり、桜や紅葉スポットとしても知られる無料のキャンプ場は？</p>
+                <label class="option-label">
+                    <input type="radio" name="q8" value="ア"> ア) 桂沢キャンプ場
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q8" value="イ"> イ) 奥沢キャンプ場
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q8" value="ウ"> ウ) ハルニレの森キャンプ村
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q8" value="エ"> エ) 日本庭園キャンプサイト
+                </label>
+            </div>
+
+            <div id="question-9" class="question-section" style="display:none;">
+                <p class="question-title">【第九問】 (選択式)<br>かつて閉店した「アカシ食堂」で親しまれていたメニューを、地域おこし協力隊や「パンケの湯」の職員などによる町おこしプロジェクトの一環として、2016年に復刻した炭鉱グルメは、上砂川岳温泉「パンケの湯」の名物として現在も提供されています。さて、その料理は何でしょう？</p>
+                <label class="option-label">
+                    <input type="radio" name="q9" value="ア"> ア) 石炭たこ焼き
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q9" value="イ"> イ) ニジマス燻製
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q9" value="ウ"> ウ) ソースカツ丼
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q9" value="エ"> エ) 黒ビールチーズ
+                </label>
+            </div>
+
+            <div id="question-10" class="question-section" style="display:none;">
+                <p class="question-title">【第十問】 (選択式)<br>紅葉の名所をめぐりながら、地域の魅力と自然を楽しむ「かみすながわぐるっと紅葉マラニック」は、上砂川町で開催される秋の人気イベントです。このマラニックで、参加者向けに実際に設けられている特徴的なポイントはどれでしょう？</p>
+                <label class="option-label">
+                    <input type="radio" name="q10" value="ア"> ア) 完走タイムに応じて順位表彰がある
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q10" value="イ"> イ) コース途中に上砂川町の特産品を味わえるエイド（給水・給食所）がある
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q10" value="ウ"> ウ) 参加資格は上砂川町在住者に限られる
+                </label>
+                <label class="option-label">
+                    <input type="radio" name="q10" value="エ"> エ) 全行程を走り切ることが義務づけられている
+                </label>
+            </div>
+
+            <div id="question-11" class="question-section" style="display:none;">
+                <p class="question-title">【第十一問】 (記述式)<br>あなたが知っている上砂川町の魅力や、町に対するイメージ、思い出、またはこのクイズを通して上砂川町に興味を持ったことなど、自由に記述してください。</p>
+                <textarea id="q11_text" name="q11_text" placeholder="ここに回答を入力してください..."></textarea>
             </div>
 
             <div class="button-group flex justify-center mt-8">
@@ -331,12 +450,12 @@
             <div class="text-gray-700 leading-relaxed">
                 <h2 class="text-xl font-semibold mb-3">【おわりに】</h2>
                 <p class="mb-2">上砂川町クイズ、お疲れ様でした！いかがでしたでしょうか。</p>
-                <p class="mb-2">このクイズを通して、上砂川町の歴史や文化の一端に触れていただけたなら幸いです。炭鉱遺産、ドラマのロケ地、ユニークな科学施設など、小さな町ながらも多様な顔を持つ上砂川町。結果に関わらず、この町に少しでも興味を持っていただけたら嬉しいです。</p>
+                <p class="mb-2">このクイズを通して、上砂川町の歴史や文化の一端に触れていただけたなら幸いです。開拓の歴史、炭鉱遺産、ドラマのロケ地、ユニークな科学施設、そして豊かな自然と美味しいグルメなど、小さな町ながらも多様な顔を持つ上砂川町。結果に関わらず、この町に少しでも興味を持っていただけたら嬉しいです。</p>
                 <p>機会があれば、ぜひ実際に上砂川町を訪れて、その魅力を肌で感じてみてください。</p>
             </div>
-            <div id="q5_user_input" class="description-feedback mt-6 p-4 rounded-lg bg-blue-50 border border-blue-300 text-blue-800">
+            <div id="q11_user_input" class="description-feedback mt-6 p-4 rounded-lg bg-blue-50 border border-blue-300 text-blue-800">
                 <p class="font-semibold mb-2">【あなたの上砂川町への思い】</p>
-                <p id="q5_display_text" class="whitespace-pre-wrap"></p>
+                <p id="q11_display_text" class="whitespace-pre-wrap"></p>
                 <p class="text-sm mt-3 text-blue-600">素敵なコメントをありがとうございます！</p>
             </div>
             <div class="flex justify-center mt-6">
@@ -355,7 +474,13 @@
                 document.getElementById('question-2'),
                 document.getElementById('question-3'),
                 document.getElementById('question-4'),
-                document.getElementById('question-5')
+                document.getElementById('question-5'),
+                document.getElementById('question-6'),
+                document.getElementById('question-7'),
+                document.getElementById('question-8'),
+                document.getElementById('question-9'),
+                document.getElementById('question-10'),
+                document.getElementById('question-11')
             ];
             const prevButton = document.getElementById('prevButton');
             const nextButton = document.getElementById('nextButton');
@@ -363,19 +488,34 @@
             const resultsDiv = document.getElementById('results');
             const scoreDisplay = document.getElementById('score-display');
             const feedbackArea = document.getElementById('feedback-area');
-            const q5DisplayText = document.getElementById('q5_display_text');
-            const q5UserInputSection = document.getElementById('q5_user_input');
+            const q11DisplayText = document.getElementById('q11_display_text');
+            const q11UserInputSection = document.getElementById('q11_user_input');
             const resetButton = document.getElementById('resetButton');
+            const progressFill = document.getElementById('progressFill');
+            const questionCounter = document.getElementById('question-counter');
 
             let currentQuestionIndex = 0; // 0-indexed
 
             // 正しい回答を定義
             const correctAnswers = {
-                q1: 'ウ', // 炭鉱業
-                q2: 'イ', // 上砂川駅 (鶉、下鶉は上砂川支線の中間駅。東上砂川は存在しない)
-                q3: 'ウ', // 地下無重力実験センター (JAMIC)
-                q4: 'ウ'  // 日本一人口の少ない町 (2014年まで)
+                q1: 'イ', // 福井県
+                q2: 'イ', // 砂川町と歌志内町の一部
+                q3: 'ウ', // 炭鉱業
+                q4: 'イ', // ダイヤ
+                q5: 'イ', // 上砂川駅
+                q6: 'ウ', // 地下無重力実験センター (JAMIC)
+                q7: 'ウ', // 小惑星イトカワ
+                q8: 'イ', // 奥沢キャンプ場
+                q9: 'ウ', // ソースカツ丼
+                q10: 'イ' // コース途中に特産品を味わえるエイドがある
             };
+
+            // プログレスバーと問題番号の更新
+            function updateProgress() {
+                const progress = ((currentQuestionIndex + 1) / questionSections.length) * 100;
+                progressFill.style.width = progress + '%';
+                questionCounter.textContent = `問題 ${currentQuestionIndex + 1} / ${questionSections.length}`;
+            }
 
             // 質問の表示を更新する関数
             function updateQuestionDisplay() {
@@ -388,6 +528,9 @@
                 if (questionSections[currentQuestionIndex]) {
                     questionSections[currentQuestionIndex].style.display = 'block';
                 }
+
+                // プログレスバーと問題番号を更新
+                updateProgress();
 
                 // 「前へ」ボタンの表示/非表示を切り替える
                 if (currentQuestionIndex === 0) {
@@ -440,8 +583,8 @@
                 let score = 0;
                 feedbackArea.innerHTML = ''; // フィードバックエリアをクリア
 
-                // 質問1〜4の選択式問題の採点とフィードバック
-                for (let i = 1; i <= 4; i++) {
+                // 質問1〜10の選択式問題の採点とフィードバック
+                for (let i = 1; i <= 10; i++) {
                     const qName = `q${i}`;
                     const selectedOption = document.querySelector(`input[name="${qName}"]:checked`);
                     let feedbackHtml = '';
@@ -459,18 +602,18 @@
                     feedbackArea.innerHTML += feedbackHtml;
                 }
 
-                // 質問5の記述式問題の表示
-                const q5Text = document.getElementById('q5_text').value.trim();
-                if (q5Text) {
-                    q5DisplayText.textContent = q5Text;
-                    q5UserInputSection.style.display = 'block';
+                // 質問11の記述式問題の表示
+                const q11Text = document.getElementById('q11_text').value.trim();
+                if (q11Text) {
+                    q11DisplayText.textContent = q11Text;
+                    q11UserInputSection.style.display = 'block';
                 } else {
-                    q5DisplayText.textContent = '（回答が入力されませんでした）';
-                    q5UserInputSection.style.display = 'block';
+                    q11DisplayText.textContent = '（回答が入力されませんでした）';
+                    q11UserInputSection.style.display = 'block';
                 }
 
                 // スコアを表示
-                scoreDisplay.textContent = `${score} / 4 問正解`;
+                scoreDisplay.textContent = `${score} / 10 問正解`;
                 quizForm.style.display = 'none'; // クイズフォームを非表示
                 resultsDiv.style.display = 'block'; // 結果セクションを表示
                 window.scrollTo({ top: resultsDiv.offsetTop, behavior: 'smooth' });
@@ -481,10 +624,12 @@
                 quizForm.reset();
                 resultsDiv.style.display = 'none';
                 feedbackArea.innerHTML = '';
-                q5DisplayText.textContent = '';
-                q5UserInputSection.style.display = 'none';
+                q11DisplayText.textContent = '';
+                q11UserInputSection.style.display = 'none';
                 introSection.style.display = 'block';
                 quizForm.style.display = 'none';
+                currentQuestionIndex = 0;
+                updateProgress();
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         });
