@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>クイズに挑戦 | 上砂川町まるごとクイズ 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="quiz-container">
+
+    <!-- ヘッダー -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+      <a href="index.html" class="btn btn-back">← トップに戻る</a>
+      <h1 style="font-size: 1.25rem; font-weight: 700; color: #2d3748;">上砂川町まるごとクイズ</h1>
+      <div style="width: 120px;"></div>
+    </div>
+
+    <!-- イントロ -->
+    <div id="intro-section">
+      <div style="text-align: center; margin-bottom: 1.5rem;">
+        <p style="font-size: 3rem; margin-bottom: 0.5rem;">🧠</p>
+        <h2 style="font-size: 1.5rem; font-weight: 700; color: #2d3748; margin-bottom: 0.5rem;">全10問に挑戦！</h2>
+        <p style="color: #718096; line-height: 1.7;">
+          歴史・文化・科学・グルメなど、<br>
+          上砂川町にまつわる10問のクイズです。<br>
+          あなたは何問正解できるでしょうか？
+        </p>
+      </div>
+      <div class="button-group">
+        <button type="button" id="startButton" class="btn btn-primary">クイズを始める</button>
+      </div>
+    </div>
+
+    <!-- クイズフォーム -->
+    <form id="quizForm" style="display: none;">
+      <div class="progress-bar">
+        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+      </div>
+      <div id="questionCounter" class="question-counter"></div>
+
+      <!-- 問題はJSで動的に生成 -->
+      <div id="questions-container"></div>
+
+      <div class="button-group">
+        <button type="button" id="prevButton" class="btn btn-secondary" style="display: none;">前へ</button>
+        <button type="button" id="nextButton" class="btn btn-primary">次へ</button>
+        <button type="button" id="submitButton" class="btn btn-primary" style="display: none;">結果を見る</button>
+      </div>
+    </form>
+
+    <!-- 結果 -->
+    <div id="results" class="results-section" style="display: none;">
+      <h3>🎉 クイズ結果</h3>
+      <div id="scoreDisplay" class="score-display"></div>
+      <div id="feedbackArea"></div>
+
+      <div class="results-outro">
+        <p><strong>お疲れ様でした！</strong></p>
+        <p>このクイズを通して、上砂川町の歴史や文化の一端に触れていただけたなら幸いです。</p>
+        <p>機会があれば、ぜひ実際に上砂川町を訪れて、その魅力を肌で感じてみてください。</p>
+      </div>
+
+      <div class="button-group">
+        <button type="button" id="resetButton" class="btn btn-secondary">もう一度挑戦する</button>
+        <a href="index.html" class="btn btn-primary">トップに戻る</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="js/quiz.js"></script>
+</body>
+</html>
